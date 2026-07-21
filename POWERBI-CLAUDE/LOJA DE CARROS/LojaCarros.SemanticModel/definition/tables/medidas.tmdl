@@ -26,6 +26,10 @@ table medidas
 		lineageTag: 5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t
 		expression: SUM(fato_vendas[valor_venda])
 
+	partition medidas = m
+		mode: import
+		source = Table.FromRows({}, {"Measures"})
+
 	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
