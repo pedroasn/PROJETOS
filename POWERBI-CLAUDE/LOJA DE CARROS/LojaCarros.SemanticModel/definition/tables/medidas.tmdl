@@ -1,6 +1,14 @@
 table medidas
 	lineageTag: f8c2e1a4-3d9f-4e1b-8b2f-6a7c8e9d0f1a
 
+	column Measures
+		dataType: string
+		lineageTag: 7f8g9h0i-1j2k-3l4m-5n6o-7p8q9r0s1t2u
+		summarizeBy: none
+		sourceColumn: Measures
+
+		annotation IsHidden = true
+
 	measure 'Receita Total'
 		formatString: #,0.00\ "R$"
 		lineageTag: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
