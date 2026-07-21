@@ -1,0 +1,73 @@
+table dim_tempo
+	lineageTag: 79a37dca-8914-4319-9211-3c082c519c87
+
+	column id_tempo
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e172278-a460-4fdf-8811-629c80d3a5a6
+		summarizeBy: sum
+		sourceColumn: id_tempo
+
+		annotation SummarizationSetBy = Automatic
+
+	column data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 974a780c-05c4-484a-90f6-5b005351f7a3
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ano
+		dataType: int64
+		formatString: 0
+		lineageTag: d81cb5b8-7374-4428-9315-614d1e4b575e
+		summarizeBy: sum
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: f500d3ac-c43b-429a-b5b4-8b79d4f721b0
+		summarizeBy: sum
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		dataType: int64
+		formatString: 0
+		lineageTag: b5469f75-4e99-4758-ac10-f8b9bec4ed50
+		summarizeBy: sum
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column feriado
+		dataType: int64
+		formatString: 0
+		lineageTag: 8648edcf-e342-4146-a180-059cf6b6aa3f
+		summarizeBy: sum
+		sourceColumn: feriado
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_tempo = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("D:\Cursos\Python\Loja Carros\bases\dim_tempo.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"id_tempo", Int64.Type}, {"data", type date}, {"ano", Int64.Type}, {"mes", Int64.Type}, {"dia", Int64.Type}, {"feriado", Int64.Type}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

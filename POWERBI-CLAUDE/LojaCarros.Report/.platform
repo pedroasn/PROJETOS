@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "LojaCarros"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "93bbe50b-a869-48db-9798-4fec59733bf1"
+  }
+}

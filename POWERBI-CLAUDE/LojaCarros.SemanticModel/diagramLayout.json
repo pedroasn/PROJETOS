@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 191,
+            "y": 148
+          },
+          "nodeIndex": "dim_cliente",
+          "nodeLineageTag": "c8692d40-991b-4f51-a925-7b85c19463ae",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 724,
+            "y": 596
+          },
+          "nodeIndex": "dim_tempo",
+          "nodeLineageTag": "79a37dca-8914-4319-9211-3c082c519c87",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1415,
+            "y": 144
+          },
+          "nodeIndex": "dim_veiculo",
+          "nodeLineageTag": "47217c4a-915d-497f-abb0-c032ea433e8f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 732,
+            "y": 132
+          },
+          "nodeIndex": "fato_vendas",
+          "nodeLineageTag": "afc3c6ff-a52f-4f57-bfd9-cdd98bfe68b4",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

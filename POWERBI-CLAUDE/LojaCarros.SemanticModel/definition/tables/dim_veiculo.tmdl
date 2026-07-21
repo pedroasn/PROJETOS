@@ -1,0 +1,61 @@
+table dim_veiculo
+	lineageTag: 47217c4a-915d-497f-abb0-c032ea433e8f
+
+	column id_veiculo
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bb0dd86-626a-4f32-a1ad-4689e7c3d5fa
+		summarizeBy: sum
+		sourceColumn: id_veiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column marca
+		dataType: string
+		lineageTag: 38059c2b-fcda-41b8-85b0-812a5d49ab75
+		summarizeBy: none
+		sourceColumn: marca
+
+		annotation SummarizationSetBy = Automatic
+
+	column modelo
+		dataType: string
+		lineageTag: c32b194f-3422-4112-b3a0-3e1fec0f0149
+		summarizeBy: none
+		sourceColumn: modelo
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano
+		dataType: double
+		formatString: 0
+		lineageTag: 2f6aff2b-1f92-4979-836e-f6be1b2e6ddd
+		summarizeBy: sum
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: db2d5dd5-b422-4546-a426-820dcc43bee2
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_veiculo = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("D:\Cursos\Python\Loja Carros\bases\dim_veiculo.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"id_veiculo", Int64.Type}, {"marca", type text}, {"modelo", type text}, {"ano", Int64.Type}, {"categoria", type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo de coluna alterado","","NI",Replacer.ReplaceValue,{"categoria"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído",null,2023,Replacer.ReplaceValue,{"ano"})
+				in
+				  #"Valor Substituído1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

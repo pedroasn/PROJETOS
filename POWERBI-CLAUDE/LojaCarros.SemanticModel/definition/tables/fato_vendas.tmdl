@@ -1,0 +1,84 @@
+table fato_vendas
+	lineageTag: afc3c6ff-a52f-4f57-bfd9-cdd98bfe68b4
+
+	column id_venda
+		dataType: int64
+		formatString: 0
+		lineageTag: 58b41f2e-5298-4219-82fc-2a8279694c4c
+		summarizeBy: sum
+		sourceColumn: id_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cliente
+		dataType: double
+		formatString: 0
+		lineageTag: 3723cb8d-fde9-4529-85fd-ad185d30acac
+		summarizeBy: sum
+		sourceColumn: id_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_veiculo
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e9ddaa3-d157-4ada-b504-98ca4bdb8c96
+		summarizeBy: sum
+		sourceColumn: id_veiculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tempo
+		dataType: int64
+		formatString: 0
+		lineageTag: 5960388f-7bc5-4da9-8f3b-b10ff5fa3877
+		summarizeBy: sum
+		sourceColumn: id_tempo
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_venda
+		dataType: double
+		formatString: 0
+		lineageTag: ab354f0b-c24a-4e16-9c21-35243d986e33
+		summarizeBy: sum
+		sourceColumn: valor_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantidade
+		dataType: double
+		formatString: 0
+		lineageTag: ef979acb-b3a4-4069-9efa-bc5357fbc03c
+		summarizeBy: sum
+		sourceColumn: quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column desconto
+		dataType: double
+		formatString: 0
+		lineageTag: a5ee993e-c6b9-4988-b747-a747dd5854c7
+		summarizeBy: sum
+		sourceColumn: desconto
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fato_vendas = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("D:\Cursos\Python\Loja Carros\bases\fato_vendas.csv"), [Delimiter = ",", Columns = 7, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"id_venda", Int64.Type}, {"id_cliente", Int64.Type}, {"id_veiculo", Int64.Type}, {"id_tempo", Int64.Type}, {"valor_venda", Int64.Type}, {"quantidade", Int64.Type}, {"desconto", Int64.Type}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo de coluna alterado",null,1,Replacer.ReplaceValue,{"quantidade"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído",null,0,Replacer.ReplaceValue,{"desconto"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1",null,1,Replacer.ReplaceValue,{"id_cliente"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2",null,85000,Replacer.ReplaceValue,{"valor_venda"})
+				in
+				  #"Valor Substituído3"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
