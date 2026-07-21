@@ -5,7 +5,7 @@ table dim_veiculo
 		dataType: int64
 		formatString: 0
 		lineageTag: 5bb0dd86-626a-4f32-a1ad-4689e7c3d5fa
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: id_veiculo
 
 		annotation SummarizationSetBy = Automatic
@@ -30,7 +30,7 @@ table dim_veiculo
 		dataType: double
 		formatString: 0
 		lineageTag: 2f6aff2b-1f92-4979-836e-f6be1b2e6ddd
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: ano
 
 		annotation SummarizationSetBy = Automatic

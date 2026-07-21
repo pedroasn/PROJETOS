@@ -1,0 +1,12 @@
+relationship fe5e4d54-f566-4ba2-8fea-cd2a70372725
+	fromColumn: fato_vendas.id_veiculo
+	toColumn: dim_veiculo.id_veiculo
+
+relationship 9f4aebd2-45d2-45f2-9c5d-4f4a7b8d4332
+	fromColumn: fato_vendas.id_cliente
+	toColumn: dim_cliente.id_cliente
+
+relationship 2d8b6a47-13b6-4d45-8f8b-29a7b5c7e67f
+	fromColumn: fato_vendas.id_tempo
+	toColumn: dim_tempo.id_tempo
+

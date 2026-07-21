@@ -23,7 +23,7 @@ table fato_vendas
 		dataType: int64
 		formatString: 0
 		lineageTag: 8e9ddaa3-d157-4ada-b504-98ca4bdb8c96
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: id_veiculo
 
 		annotation SummarizationSetBy = Automatic
