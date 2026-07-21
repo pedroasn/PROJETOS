@@ -1,0 +1,37 @@
+table medidas
+	lineageTag: f8c2e1a4-3d9f-4e1b-8b2f-6a7c8e9d0f1a
+	description: Tabela contendo as medidas DAX para análise de vendas
+
+	measure 'Receita Total'
+		formatString: #,0.00\ "R$"
+		lineageTag: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
+		expression: SUM(fato_vendas[valor_venda])
+		description: Soma total de todas as vendas
+
+	measure 'Qtd Vendas'
+		formatString: #,0
+		lineageTag: 2b3c4d5e-6f7g-8h9i-0j1k-2l3m4n5o6p7q
+		expression: SUM(fato_vendas[quantidade])
+		description: Quantidade total de unidades vendidas
+
+	measure 'Num Transacoes'
+		formatString: #,0
+		lineageTag: 3c4d5e6f-7g8h-9i0j-1k2l-3m4n5o6p7q8r
+		expression: COUNTA(fato_vendas[id_venda])
+		description: Número total de transações de vendas registradas
+
+	measure 'Receita Bruta'
+		formatString: #,0.00\ "R$"
+		lineageTag: 4d5e6f7g-8h9i-0j1k-2l3m-4n5o6p7q8r9s
+		expression: SUM(fato_vendas[valor_venda]) + SUM(fato_vendas[desconto])
+		description: Receita total antes dos descontos aplicados
+
+	measure 'Receita Liquida'
+		formatString: #,0.00\ "R$"
+		lineageTag: 5e6f7g8h-9i0j-1k2l-3m4n-5o6p7q8r9s0t
+		expression: SUM(fato_vendas[valor_venda])
+		description: Receita após aplicação de descontos
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
